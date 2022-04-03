@@ -1,12 +1,11 @@
-import { Box, Tabs, Tab, Container } from '@mui/material';
+import { Box, Tabs, Tab } from '@mui/material';
 import { useState } from 'react';
 import Acknowledgements from './Acknowledgements';
 import Contacts from './Contacts';
 import Requirements from './Requirements';
-import useLocalStorage from './utils/useLocalStorage';
 
 export default function App() {
-	const [value, setValue] = useLocalStorage<number>('tab', 1);
+	const [value, setValue] = useState(1);
 
 	const handleChange = (event: React.SyntheticEvent, newValue: number) => {
 		setValue(newValue);
