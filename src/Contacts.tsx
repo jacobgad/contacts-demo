@@ -1,4 +1,4 @@
-import { Button, Container, Grid, TextField } from '@mui/material';
+import { Button, Container, Grid, TextField, Typography } from '@mui/material';
 import { useEffect, useState } from 'react';
 import ContactsList from './ContactsList';
 import letters from './utils/letters';
@@ -73,6 +73,11 @@ export default function Contacts() {
 					<Button variant='contained' color='error' fullWidth onClick={() => setContacts([])}>
 						Delete All
 					</Button>
+				</Grid>
+				<Grid xs={12}>
+					<Typography align='right' mt={2} mr={2}>
+						Showing {filteredContacts.length} of {contacts.length}{' '}
+					</Typography>
 				</Grid>
 			</Grid>
 			<ContactsList contacts={filteredContacts} deleteContact={deleteContact} />
