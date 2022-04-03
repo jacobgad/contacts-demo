@@ -3,9 +3,10 @@ import { useState } from 'react';
 import Acknowledgements from './Acknowledgements';
 import Contacts from './Contacts';
 import Requirements from './Requirements';
+import useLocalStorage from './utils/useLocalStorage';
 
 export default function App() {
-	const [value, setValue] = useState(0);
+	const [value, setValue] = useLocalStorage<number>('tab', 0);
 
 	const handleChange = (event: React.SyntheticEvent, newValue: number) => {
 		setValue(newValue);

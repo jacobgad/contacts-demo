@@ -1,8 +1,9 @@
 import { Button, Container, Grid, TextField } from '@mui/material';
 import { useEffect, useState } from 'react';
 import ContactsList from './ContactsList';
-import letters from './letters';
+import letters from './utils/letters';
 import AddIcon from '@mui/icons-material/Add';
+import useLocalStorage from './utils/useLocalStorage';
 
 function generateName(): string {
 	let name = '';
@@ -15,7 +16,7 @@ function generateName(): string {
 }
 
 export default function Contacts() {
-	const [contacts, setContacts] = useState<string[]>([]);
+	const [contacts, setContacts] = useLocalStorage<string[]>('contacts', []);
 	const [filteredContacts, setFilteredContacts] = useState<string[]>([]);
 	const [searchTerm, setSearchTerm] = useState<string>('');
 	const [isAsc, setIsAsc] = useState(false);
