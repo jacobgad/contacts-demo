@@ -6,7 +6,7 @@ import Requirements from './Requirements';
 import useLocalStorage from './utils/useLocalStorage';
 
 export default function App() {
-	const [value, setValue] = useLocalStorage<number>('tab', 0);
+	const [value, setValue] = useLocalStorage<number>('tab', 1);
 
 	const handleChange = (event: React.SyntheticEvent, newValue: number) => {
 		setValue(newValue);
