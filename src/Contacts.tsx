@@ -22,8 +22,8 @@ export default function Contacts() {
 	const [isAsc, setIsAsc] = useState(false);
 
 	function addContact() {
-		const newContacts = [...contacts, generateName()];
-		setContacts(newContacts.sort());
+		const newContacts = [...contacts, generateName()].sort();
+		isAsc ? setContacts(newContacts.reverse()) : setContacts(newContacts);
 	}
 
 	function deleteContact(name: string) {
