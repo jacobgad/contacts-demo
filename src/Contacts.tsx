@@ -42,6 +42,10 @@ export default function Contacts() {
 		setFilteredContacts(matching);
 	}, [searchTerm, contacts]);
 
+	useEffect(() => {
+		setContacts([...contacts.sort()]);
+	}, []);
+
 	return (
 		<Container maxWidth='sm'>
 			<Grid container spacing={2}>
@@ -74,9 +78,9 @@ export default function Contacts() {
 						Delete All
 					</Button>
 				</Grid>
-				<Grid xs={12}>
+				<Grid item xs={12}>
 					<Typography align='right' mt={2} mr={2}>
-						Showing {filteredContacts.length} of {contacts.length}{' '}
+						Showing {filteredContacts.length} of {contacts.length}
 					</Typography>
 				</Grid>
 			</Grid>
