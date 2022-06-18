@@ -10,7 +10,7 @@ The project is a simple contacts app which generates random names, and provides 
 
 ## Demo
 
-https://keen-liger-6d46aa.netlify.app
+[https://jacobgad-contacts-demo.netlify.app](https://jacobgad-contacts-demo.netlify.app)
 
 
 ## Run Locally
