@@ -1,25 +1,32 @@
 import { Button, Container, Grid, TextField, Typography } from '@mui/material';
-import { useEffect, useState } from 'react';
-import ContactsList from './ContactsList';
-import letters from './utils/letters';
+import { useMemo, useState } from 'react';
+import Contact from './ContactCard';
 import AddIcon from '@mui/icons-material/Add';
 import useLocalStorage from './utils/useLocalStorage';
 
+const letters = 'abcdefghijklmnopqrstuvwxyz';
+
+function getRandomLetter(): string {
+	return letters[Math.floor(Math.random() * 26)];
+}
+
 function generateName(): string {
-	let name = '';
-	for (let i = 0; i < 5; i++) {
-		const randomIdx = Math.floor(Math.random() * 26);
-		name += letters[randomIdx];
+	let name = getRandomLetter().toUpperCase();
+	for (let i = 0; i < 4; i++) {
+		name += getRandomLetter();
 	}
-	name = name[0].toUpperCase() + name.slice(1);
 	return name;
 }
 
 export default function Contacts() {
 	const [contacts, setContacts] = useLocalStorage<string[]>('contacts', []);
-	const [filteredContacts, setFilteredContacts] = useState<string[]>([]);
 	const [searchTerm, setSearchTerm] = useState<string>('');
 	const [isAsc, setIsAsc] = useState(false);
+
+	const filteredContacts = useMemo(
+		() => contacts.filter((contact) => contact.toLowerCase().startsWith(searchTerm.toLowerCase())),
+		[contacts, searchTerm]
+	);
 
 	function addContact() {
 		const newContacts = [...contacts, generateName()].sort();
@@ -34,17 +41,6 @@ export default function Contacts() {
 		setContacts([...contacts.reverse()]);
 		setIsAsc(!isAsc);
 	}
-
-	useEffect(() => {
-		const matching = contacts.filter((contact) =>
-			contact.toLowerCase().startsWith(searchTerm.toLowerCase())
-		);
-		setFilteredContacts(matching);
-	}, [searchTerm, contacts]);
-
-	useEffect(() => {
-		setContacts([...contacts.sort()]);
-	}, []);
 
 	return (
 		<Container maxWidth='sm'>
@@ -84,7 +80,9 @@ export default function Contacts() {
 					</Typography>
 				</Grid>
 			</Grid>
-			<ContactsList contacts={filteredContacts} deleteContact={deleteContact} />
+			{filteredContacts.map((contact, idx) => (
+				<Contact key={idx} contact={contact} deleteContact={deleteContact} />
+			))}
 		</Container>
 	);
 }
