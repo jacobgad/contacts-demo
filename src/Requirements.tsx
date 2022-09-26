@@ -84,7 +84,7 @@ export default function Requirements() {
 					</Typography>
 				</li>
 				<li>
-					<Typography>If the button is dicked, a name is generated i.e. "Kdumw"</Typography>
+					<Typography>If the button is clicked, a name is generated i.e. "Kdumw"</Typography>
 				</li>
 				<li>
 					<Typography>

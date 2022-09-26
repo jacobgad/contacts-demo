@@ -1,6 +1,6 @@
 import { Button, Container, Grid, TextField, Typography } from '@mui/material';
 import { useMemo, useState } from 'react';
-import Contact from './ContactCard';
+import ContactCard from './ContactCard';
 import AddIcon from '@mui/icons-material/Add';
 import useLocalStorage from './utils/useLocalStorage';
 
@@ -81,7 +81,7 @@ export default function Contacts() {
 				</Grid>
 			</Grid>
 			{filteredContacts.map((contact, idx) => (
-				<Contact key={idx} contact={contact} deleteContact={deleteContact} />
+				<ContactCard key={idx} contact={contact} deleteContact={deleteContact} />
 			))}
 		</Container>
 	);
